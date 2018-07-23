@@ -4,30 +4,39 @@
   <script type="text/javascript">
 function Square (width, height) {
 
-function getArea() {
-	return width*height; 
-}
-return getArea();
+  this.height = height;
+  this.width = width;
+
+	function getArea() {
+		return this.width*this.height; 
+	}
 }
 
-var Circle = 	Square.prototype.getCircle = function (radius) {
+var Circle = Square.prototype.getCircle = function (radius) {
 
-		return console.log(Math.pow((Math.PI*radius),2));
+	return Math.pow((Math.PI*radius),2);
 } 
+
 
 function Area () {
 
-this._figures = [];
+	this._figures = [];
 
-function addFigure(figure) {
-this._figures[this._figures.length] = figure;
-console.log(this._figures.length);
-}
+		function addFigure(figure) {
+			this._figures[this._figures.length] = figure;
+		}
 
-function clear() {
-this._figures.length = 0;
-}
+		function clear() {
+			this._figures.length = 0;
+		}
 
+		function size() {
+			var items_square = 0;
+			this._figures.forEach(function(entry) {
+items_square += Object.defineProperty(entry, figure.Square, 'get square');
+});
+			return items_square;
+		}
 }
 
   </script>
