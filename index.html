@@ -2,41 +2,54 @@
 <html lang="en">
 <head>
   <script type="text/javascript">
+
 function Square (width, height) {
 
   this.height = height;
   this.width = width;
 
-	function getArea() {
+	this.getArea = function() {
 		return this.width*this.height; 
 	}
 }
 
-var Circle = Square.prototype.getCircle = function (radius) {
+function Circle (radius) {
 
-	return Math.pow((Math.PI*radius),2);
-} 
+	Square.call(this);
+
+	this.getCircle = function() {
+		return Math.PI*(Math.pow(radius,2));
+	}
+}
 
 
 function Area () {
 
 	this._figures = [];
 
-		function addFigure(figure) {
-			this._figures[this._figures.length] = figure;
-		}
+	this.addFigure = function(figure) {
+		this._figures[this._figures.length] = figure;
 
-		function clear() {
-			this._figures.length = 0;
-		}
+	}
 
-		function size() {
-			var items_square = 0;
+	Object.defineProperty(this, "size", {
+		get: function() {
+			var square_items = 0;
 			this._figures.forEach(function(entry) {
-items_square += Object.defineProperty(entry, figure.Square, 'get square');
-});
-			return items_square;
+				if (entry.getArea())  {
+					square_items += entry.getArea();
+					} else {
+					square_items += entry.getCircle();
+					}
+			});
+			return square_items;
 		}
+	}); 
+
+	this.clear = function() {
+		this._figures.length = 0;
+	}	
+
 }
 
   </script>
